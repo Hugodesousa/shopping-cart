@@ -8,7 +8,7 @@ describe('1 - Teste a função fetchProducts', () => {
   });
   test('Testa se fetch foi chamada', () => {
     fetchProducts('computador')
-    expect(fetch).toHaveBeenCalledTimes(0)
+    expect(fetch).toHaveBeenCalledTimes(1)
   });
   test('Teste se, ao chamar a função fetchProducts com o argumento "computador", a função fetch utiliza o endpoint correto', () => {
     fetchProducts('computador')
