@@ -20,7 +20,7 @@ describe('1 - Teste a função fetchProducts', () => {
 
     expect(result).toEqual(computadorSearch.results) 
   });
-  test('Testa se fetch foi chamada', async () => {
+  test('este se, ao chamar a função fetchProducts sem argumento, retorna um erro com a mensagem: "You must provide an url"', async () => {
     const resultErr = await fetchProducts ();
     expect(resultErr).toEqual(new Error('You must provide an url'))
   });

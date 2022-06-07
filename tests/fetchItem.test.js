@@ -15,4 +15,13 @@ describe('1 - Teste a função fetchItem', () => {
 
     expect(fetch).toHaveBeenLastCalledWith("https://api.mercadolibre.com/items/MLB1615760527")
   });
+  test('Teste se o retorno da função fetchItem com o argumento "computador" é uma estrutura de dados igual ao objeto "computadorSearc"', async () => {
+    const result = await fetchItem ('MLB1615760527');
+
+    expect(result).toEqual(item) 
+  });
+  test('Testa se fetch foi chamada', async () => {
+    const resultErr = await fetchItem();
+    expect(resultErr).toEqual(new Error('You must provide an url'))
+  });
 });
