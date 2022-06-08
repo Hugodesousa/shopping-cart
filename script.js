@@ -72,7 +72,7 @@ const productsList = async () => {
 };
 
 // ainda n
-const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
+/* const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText; */
 
 window.onload = async () => {
   productsList();
