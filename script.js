@@ -29,6 +29,7 @@ const createProductItemElement = ({ sku, name, image }) => {
 
 const cartItemClickListener = (event) => {
   event.target.remove();
+  console.log(event);
 };
 // Adiciona Elemntodos ao carrinho elemetos no carrinho 
 
@@ -47,6 +48,7 @@ const getItem = async (parm) => {
     name: test.title,
     salePrice: test.price,
   };
+  saveCartItems(cartItem);
   cart.appendChild(createCartItemElement(cartItem));
 };
 
