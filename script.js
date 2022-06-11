@@ -82,8 +82,16 @@ const reloadcart = () => {
     item.addEventListener('click', cartItemClickListener);
   });
 };
+const clear = () => {
+ const boton = document.querySelector('.empty-cart');
+boton.addEventListener('click', () => {
+  localStorage.clear();
+  cart.innerText = '';
+}); 
+};
 
 window.onload = async () => {
   productsList();
   reloadcart();
+  clear();
 };
