@@ -1,5 +1,4 @@
 /* const { fetchProducts } = require("./helpers/fetchProducts"); */
-let total = [];
 let totalCalculate = 0;
 
 const products = document.querySelector('.items');
@@ -31,11 +30,12 @@ const createProductItemElement = ({ sku, name, image }) => {
   return section;
 };
 
+// remove iten e recalcula o valor total
+
 const cartItemClickListener = (event, salePrice) => {
   event.target.remove();
   saveCartItems(cart.innerHTML);
   totalCalculate -= salePrice;
-  console.log('aqui', totalCalculate);
   const span = document.createElement('span');
   span.className = 'total-price';
   totalContainer.innerText = '';
@@ -81,6 +81,8 @@ const addTocart = (event) => {
   getItem(event.target.parentNode.firstChild.innerHTML);
 };
 
+// adiciona lista de produtos atraves da API
+
 const productsList = async () => {
   const listItens = await fetchProducts('computador');
   listItens.forEach((product) => {
@@ -98,8 +100,7 @@ const productsList = async () => {
   });
 };
 
-// ainda n
-//  const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText; 
+// Recupera itens adicionados no carrinho depois de recaregar a pagina
  
 const reloadcart = () => {
   cart.innerHTML = getSavedCartItems();
@@ -107,6 +108,8 @@ const reloadcart = () => {
     item.addEventListener('click', cartItemClickListener);
   });
 };
+
+// limpa intens adicionados no carrinho 
 const clear = () => {
  const boton = document.querySelector('.empty-cart');
 boton.addEventListener('click', () => {
