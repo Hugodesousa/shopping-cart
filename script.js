@@ -39,7 +39,7 @@ const cartItemClickListener = (event, salePrice) => {
   const span = document.createElement('span');
   span.className = 'total-price';
   totalContainer.innerText = '';
-  span.innerText = `O total da compra e: R$${totalCalculate}`;
+  span.innerText = `O total da compra e: R$${totalCalculate.toFixed(2)}`;
   totalContainer.appendChild(span);
 };
 
@@ -49,7 +49,7 @@ const calculateTotal = () => {
   const span = document.createElement('span');
   span.className = 'total-price';
   totalContainer.innerText = '';
-  span.innerText = `O total da compra e: R$${totalCalculate}`;
+  span.innerText = `O total da compra e: R$${totalCalculate.toFixed(2)}`;
   totalContainer.appendChild(span);
 };
 
