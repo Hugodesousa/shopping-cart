@@ -1,5 +1,7 @@
 /* const { fetchProducts } = require("./helpers/fetchProducts"); */
-const total = [];
+let total = [];
+let totalCalculate = 0;
+
 const products = document.querySelector('.items');
 const totalContainer = document.querySelector('.totalContainer');
 const cart = document.querySelector('.cart__items');
@@ -29,19 +31,25 @@ const createProductItemElement = ({ sku, name, image }) => {
   return section;
 };
 
-const cartItemClickListener = (event) => {
+const cartItemClickListener = (event, salePrice) => {
   event.target.remove();
   saveCartItems(cart.innerHTML);
+  totalCalculate -= salePrice;
+  console.log('aqui', totalCalculate);
+  const span = document.createElement('span');
+  span.className = 'total-price';
+  totalContainer.innerText = '';
+  span.innerText = `O total da compra e: R$${totalCalculate}`;
+  totalContainer.appendChild(span);
 };
 
 // calcula o valor total 
 
 const calculateTotal = () => {
-  const all = total.reduce((acc, curr) => acc + curr, 0); 
-  console.log('total', all);
   const span = document.createElement('span');
   span.className = 'total-price';
-  span.innerText = `O total da compra e: ${all}`;
+  totalContainer.innerText = '';
+  span.innerText = `O total da compra e: R$${totalCalculate}`;
   totalContainer.appendChild(span);
 };
 
@@ -51,8 +59,9 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
-  li.addEventListener('click', cartItemClickListener);
-  total.push(salePrice);
+  // eslint-disable-next-line no-restricted-globals
+  li.addEventListener('click', () => cartItemClickListener(event, salePrice));
+  totalCalculate += salePrice;
   calculateTotal();
   return li;
 };
@@ -103,6 +112,8 @@ const clear = () => {
 boton.addEventListener('click', () => {
   localStorage.clear();
   cart.innerText = '';
+  totalCalculate = 0;
+  calculateTotal();
 }); 
 };
 
