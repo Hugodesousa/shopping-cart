@@ -1,5 +1,7 @@
 /* const { fetchProducts } = require("./helpers/fetchProducts"); */
+const total = [];
 const products = document.querySelector('.items');
+const totalContainer = document.querySelector('.totalContainer');
 const cart = document.querySelector('.cart__items');
 // Cria lista de produtos 
 const createProductImageElement = (imageSource) => {
@@ -31,13 +33,27 @@ const cartItemClickListener = (event) => {
   event.target.remove();
   saveCartItems(cart.innerHTML);
 };
-// Adiciona Elemntodos ao carrinho elemetos no carrinho 
+
+// calcula o valor total 
+
+const calculateTotal = () => {
+  const all = total.reduce((acc, curr) => acc + curr, 0); 
+  console.log('total', all);
+  const span = document.createElement('span');
+  span.className = 'total-price';
+  span.innerText = `O total da compra e: ${all}`;
+  totalContainer.appendChild(span);
+};
+
+// Adiciona Elementos ao carrinho 
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
   li.addEventListener('click', cartItemClickListener);
+  total.push(salePrice);
+  calculateTotal();
   return li;
 };
 
